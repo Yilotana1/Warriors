@@ -16,6 +16,12 @@ public class Lancer extends Warrior {
 
     }
 
+
+    @Override
+    public int getMaxHealth() {
+        return Parameters.LANCER_HEALTH;
+    }
+
     protected int getDecreasedAttack() {
         return Parameters.LANCER_DECREASED_ATTACK;
     }

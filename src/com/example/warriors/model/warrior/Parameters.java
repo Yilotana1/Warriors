@@ -1,32 +1,34 @@
 package com.example.warriors.model.warrior;
 
 
-public interface Parameters {
+public final class Parameters {
 
-    int WARRIOR_HEALTH = 50;
-    int WARRIOR_ATTACK = 5;
+    private Parameters(){}
 
-    int KNIGHT_HEALTH = 50;
-    int KNIGHT_ATTACK = 7;
+    public static final int WARRIOR_HEALTH = 50;
+    public static final int WARRIOR_ATTACK = 5;
 
-    int DEFENDER_HEALTH = 60;
-    int DEFENDER_ATTACK = 3;
-    int DEFENDER_DEFENSE = 2;
+    public static final int KNIGHT_HEALTH = 50;
+    public static final int KNIGHT_ATTACK = 7;
 
-    int LANCER_HEALTH = 50;
-    int LANCER_ATTACK = 6;
-    int LANCER_DECREASED_ATTACK = 50;
+    public static final int DEFENDER_HEALTH = 60;
+    public static final int DEFENDER_ATTACK = 3;
+    public static final int DEFENDER_DEFENSE = 2;
 
-    int VAMPIRE_HEALTH = 40;
-    int VAMPIRE_ATTACK = 4;
-    int VAMPIRE_VAMPIRISM = 50;
+    public static final int LANCER_HEALTH = 50;
+    public static final int LANCER_ATTACK = 6;
+    public static final int LANCER_DECREASED_ATTACK = 50;
 
-    int HEALER_HEALTH = 60;
-    int HEALER_ATTACK = 0;
-    int HEALER_HEALING = 2;
+    public static final int VAMPIRE_HEALTH = 40;
+    public static final int VAMPIRE_ATTACK = 4;
+    public static final int VAMPIRE_VAMPIRISM = 50;
 
-    int WARLORD_HEALTH = 100;
-    int WARLORD_ATTACK = 0;
-    int WARLORD_DEFENSE = 2;
+    public static final int HEALER_HEALTH = 60;
+    public static final int HEALER_ATTACK = 0;
+    public static final int HEALER_HEALING = 2;
+
+    public static final int WARLORD_HEALTH = 100;
+    public static final int WARLORD_ATTACK = 0;
+    public static final int WARLORD_DEFENSE = 2;
 
    }
