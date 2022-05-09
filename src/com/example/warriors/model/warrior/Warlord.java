@@ -2,8 +2,9 @@ package com.example.warriors.model.warrior;
 
 import com.example.warriors.model.army.Army;
 
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Warlord extends Defender {
 
@@ -22,28 +23,25 @@ public class Warlord extends Defender {
         return Parameters.WARLORD_HEALTH;
     }
 
-    public LinkedList<Warrior> moveUnits(Army army) {
+    public LinkedList<Warrior> mixWarriors(Army army) {
 
         LinkedList<Warrior> healers = new LinkedList<>();
         LinkedList<Warrior> warriors = new LinkedList<>();
 
-        boolean firstLancerFound = false;
-        for (Warrior w : army) {
-            if (w.getClass() == Healer.class) {
-                healers.addLast(w);
-            } else if (w.getClass() != Warlord.class) {
-                if (!firstLancerFound && w.getClass() == Lancer.class) {
-                    warriors.addFirst(w);
-                    firstLancerFound = true;
-                } else {
-                    warriors.addLast(w);
-                }
+        for (Warrior warrior : army) {
+
+            if (warrior instanceof Healer) {
+                healers.addLast(warrior);
             }
+            if (warrior instanceof Lancer) {
+                warriors.addFirst(warrior);
+            }
+            warriors.addLast(warrior);
         }
 
         if (warriors.isEmpty()) {
             if (healers.isEmpty()) {
-                return new LinkedList<>(Collections.singletonList(this));
+                return new LinkedList<>(List.of(this));
             }
             healers.addLast(this);
             return healers;
@@ -51,6 +49,7 @@ public class Warlord extends Defender {
         warriors.addAll(1, healers);
         warriors.addLast(this);
         return warriors;
-
     }
+
+
 }
