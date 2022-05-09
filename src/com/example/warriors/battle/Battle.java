@@ -12,7 +12,7 @@ public class Battle {
 
     public static boolean fight(Warrior warrior1, Warrior warrior2) {
 
-        while (warrior1.isAlive() || !warrior1.isHypnotized()) {
+        while (warrior1.isAlive() && !warrior1.isHypnotized()) {
 
             warrior1.punch(warrior2);
 

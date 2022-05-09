@@ -12,7 +12,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static com.example.warriors.battle.Battle.fight;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ArmyFightTest {
 
@@ -140,7 +141,7 @@ class ArmyFightTest {
     }
 
     @Test
-    void test12(){
+    void test12() {
         army1.addUnits(Lancer.class, 1);
         army1.addUnits(Warrior.class, 3);
         army1.addUnits(Healer.class, 1);
@@ -153,5 +154,33 @@ class ArmyFightTest {
         army2.addUnits(Vampire.class, 6);
         army2.addUnits(Lancer.class, 4);
         assertFalse(Battle.fight(army1, army2));
+    }
+
+    @Test
+    void test13() {
+        army1.addUnits(Warrior.class, 2);
+        army2.addUnits(Warrior.class, 1);
+        army2.addUnits(Shaman.class, 1);
+
+        assertFalse(Battle.fight(army1, army2));
+    }
+
+    @Test
+    void test14() {
+        army1.addUnits(Shaman.class, 1);
+        army2.addUnits(Warrior.class, 1);
+        army2.addUnits(Knight.class, 1);
+
+        assertTrue(Battle.fight(army1, army2));
+    }
+
+    @Test
+    void test15() {
+        army1.addUnits(Shaman.class, 1);
+        army1.addUnits(Shaman.class, 1);
+        army2.addUnits(Knight.class, 1);
+        army2.addUnits(Knight.class, 1);
+
+        assertTrue(Battle.fight(army1, army2));
     }
 }

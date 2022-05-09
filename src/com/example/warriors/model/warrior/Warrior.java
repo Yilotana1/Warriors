@@ -125,4 +125,8 @@ public class Warrior {
         }
         setHealth(getHealth() + health);
     }
+
+    public void awake() {
+        hypnotized = false;
+    }
 }

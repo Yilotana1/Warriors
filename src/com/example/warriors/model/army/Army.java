@@ -77,17 +77,18 @@ public class Army implements Iterable<Warrior> {
 
         if (Battle.fight(warrior, enemy)) {
             anotherArmy.removeWarrior();
-
-            addEnemyWarrior(this, enemy);
+            takeIfHypnotized(this, enemy);
             return;
         }
         this.removeWarrior();
-        addEnemyWarrior(anotherArmy, warrior);
+        takeIfHypnotized(anotherArmy, warrior);
     }
 
-    private void addEnemyWarrior(Army anotherArmy, Warrior warrior) {
-        if (warrior.isHypnotized()) {
-            anotherArmy.addUnit(warrior);
+    private void takeIfHypnotized(Army army, Warrior enemy) {
+        if (enemy.isHypnotized()){
+            army.removeWarrior();
+            army.addUnit(enemy);
+            enemy.awake();
         }
     }
 
