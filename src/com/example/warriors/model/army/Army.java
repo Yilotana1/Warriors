@@ -2,6 +2,7 @@ package com.example.warriors.model.army;
 
 import com.example.warriors.battle.Battle;
 import com.example.warriors.model.warrior.Healer;
+import com.example.warriors.model.warrior.Shaman;
 import com.example.warriors.model.warrior.Warlord;
 import com.example.warriors.model.warrior.Warrior;
 import com.example.warriors.model.weapon.Weapon;
@@ -59,7 +60,6 @@ public class Army implements Iterable<Warrior> {
     }
 
 
-
     public void attack(Army anotherArmy) {
 
         Warrior warrior = this.getWarrior();
@@ -69,7 +69,7 @@ public class Army implements Iterable<Warrior> {
             return;
         }
 
-        if (bothAreHealers(warrior, enemy)) {
+        if (bothAreHealers(warrior, enemy) || bothAreShamans(warrior, enemy)) {
             removeWarrior();
             anotherArmy.removeWarrior();
             return;
@@ -77,10 +77,27 @@ public class Army implements Iterable<Warrior> {
 
         if (Battle.fight(warrior, enemy)) {
             anotherArmy.removeWarrior();
+
+            addEnemyWarrior(this, enemy);
             return;
         }
-
         this.removeWarrior();
+        addEnemyWarrior(anotherArmy, warrior);
+    }
+
+    private void addEnemyWarrior(Army anotherArmy, Warrior warrior) {
+        if (warrior.isHypnotized()) {
+            anotherArmy.addUnit(warrior);
+        }
+    }
+
+    public Army addUnit(Warrior enemy) {
+        warriors.addFirst(enemy);
+        return this;
+    }
+
+    private boolean bothAreShamans(Warrior warrior, Warrior enemy) {
+        return warrior instanceof Shaman && enemy instanceof Shaman;
     }
 
 
@@ -93,7 +110,7 @@ public class Army implements Iterable<Warrior> {
             Warrior warrior = iterator.next();
             Warrior enemy = enemyIterator.next();
 
-            if (bothAreHealers(warrior, enemy)) {
+            if (bothAreHealers(warrior, enemy) || bothAreShamans(warrior, enemy)) {
                 continue;
             }
 

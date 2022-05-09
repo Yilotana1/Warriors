@@ -7,6 +7,11 @@ public class Healer extends Warrior {
     private int healing;
     private static final int HUNDRED_PERCENT = 100;
 
+
+    public Healer(){
+        healing = Parameters.HEALER_HEALING;
+    }
+
     public void heal(Warrior ally){
         ally.increaseHealth(getHealing());
     }

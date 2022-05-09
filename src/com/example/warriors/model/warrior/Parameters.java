@@ -28,7 +28,10 @@ public final class Parameters {
     public static final int HEALER_HEALING = 2;
 
     public static final int WARLORD_HEALTH = 100;
-    public static final int WARLORD_ATTACK = 0;
+    public static final int WARLORD_ATTACK = 4;
     public static final int WARLORD_DEFENSE = 2;
+
+    public static final int SHAMAN_HEALTH = Integer.MAX_VALUE;
+    public static final int SHAMAN_ATTACK = 0;
 
    }

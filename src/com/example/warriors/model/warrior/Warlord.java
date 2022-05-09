@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Warlord extends Defender {
 
+
     @Override
     public int getOriginalDefense() {
         return Parameters.WARLORD_DEFENSE;
@@ -14,7 +15,7 @@ public class Warlord extends Defender {
 
     @Override
     public int getOriginalAttack() {
-        return Parameters.WARRIOR_ATTACK;
+        return Parameters.WARLORD_ATTACK;
     }
 
     @Override

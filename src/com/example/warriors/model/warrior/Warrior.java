@@ -17,6 +17,8 @@ public class Warrior {
     private Warrior nextWarrior;
     @Getter(value = AccessLevel.PROTECTED)
     private final Collection<Weapon> weapons = new LinkedList<>();
+    private boolean hypnotized;
+
 
     public Warrior() {
         health = getMaxHealth();
@@ -27,6 +29,14 @@ public class Warrior {
         weapons.add(weapon);
         getHealthFromWeapon(weapon);
         getAttackFromWeapon(weapon);
+    }
+
+    public void becomeHypnotized() {
+        hypnotized = true;
+    }
+
+    public boolean isHypnotized() {
+        return hypnotized;
     }
 
     private void getHealthFromWeapon(Weapon weapon) {

@@ -154,5 +154,4 @@ class ArmyFightTest {
         army2.addUnits(Lancer.class, 4);
         assertFalse(Battle.fight(army1, army2));
     }
-
 }
