@@ -3,22 +3,19 @@ package com.example.warriors.model.weapon;
 
 public class MagicWand extends Weapon {
 
-    private static final int HEALTH = 30;
-    private static final int ATTACK = 3;
-    private static final int HEAL_POWER = 3;
 
     @Override
     public int getHealth() {
-        return HEALTH;
+        return Parameters.MAGIC_WAND_HEALTH;
     }
 
     @Override
     public int getAttack() {
-        return ATTACK;
+        return Parameters.MAGIC_WAND_ATTACK;
     }
 
     @Override
     public int getHealPower() {
-        return HEAL_POWER;
+        return Parameters.MAGIC_WAND_HEAL_POWER;
     }
 }

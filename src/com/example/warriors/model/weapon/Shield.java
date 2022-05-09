@@ -2,24 +2,21 @@ package com.example.warriors.model.weapon;
 
 public class Shield extends Weapon{
 
-    private static final int HEALTH = 20;
-    private static final int ATTACK = -1;
-    private static final int DEFENSE = -2;
 
 
     @Override
     public int getHealth() {
-        return HEALTH;
+        return Parameters.SHIELD_HEALTH;
     }
 
     @Override
     public int getAttack() {
-        return ATTACK;
+        return Parameters.SHIELD_ATTACK;
     }
 
     @Override
     public int getDefense() {
-        return DEFENSE;
+        return Parameters.SHIELD_DEFENSE;
     }
 
 
