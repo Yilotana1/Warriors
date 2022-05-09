@@ -3,6 +3,7 @@ package com.example.warriors.model.army;
 import com.example.warriors.battle.Battle;
 import com.example.warriors.model.warrior.Healer;
 import com.example.warriors.model.warrior.Warrior;
+import com.example.warriors.model.weapon.Weapon;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -22,6 +23,7 @@ public class Army implements Iterable<Warrior> {
 
         return warriors.isEmpty();
     }
+
 
 
     private Warrior getWarrior() {
@@ -114,5 +116,13 @@ public class Army implements Iterable<Warrior> {
             }
         }
         return !isEmpty();
+    }
+
+    public void equipWarrior(int position, Weapon weapon) {
+        if (position > warriors.size() || position < 0){
+            return;
+        }
+        Warrior warrior = warriors.get(position);
+        warrior.equipWeapon(weapon);
     }
 }

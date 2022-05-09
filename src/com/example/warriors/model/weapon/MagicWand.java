@@ -18,7 +18,7 @@ public class MagicWand extends Weapon {
     }
 
     @Override
-    public int getHealPower() {
+    public int getHealing() {
         return HEAL_POWER;
     }
 }

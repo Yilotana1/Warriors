@@ -12,6 +12,6 @@ public class Weapon {
     private int attack;
     private int defense;
     private int vampirism;
-    private int healPower;
+    private int healing;
 
 }
