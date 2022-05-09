@@ -2,7 +2,6 @@ package com.example.warriors.model.warrior;
 
 import com.example.warriors.model.weapon.Weapon;
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +9,6 @@ import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.LinkedList;
 
-@Data
 public class Warrior {
 
     private int attack;
@@ -18,7 +16,7 @@ public class Warrior {
     protected int health;
     private Warrior nextWarrior;
     @Getter(value = AccessLevel.PROTECTED)
-    private Collection<Weapon> weapons = new LinkedList<>();
+    private final Collection<Weapon> weapons = new LinkedList<>();
 
     public Warrior() {
         health = getMaxHealth();

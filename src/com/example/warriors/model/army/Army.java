@@ -2,6 +2,7 @@ package com.example.warriors.model.army;
 
 import com.example.warriors.battle.Battle;
 import com.example.warriors.model.warrior.Healer;
+import com.example.warriors.model.warrior.Warlord;
 import com.example.warriors.model.warrior.Warrior;
 import com.example.warriors.model.weapon.Weapon;
 
@@ -10,7 +11,7 @@ import java.util.LinkedList;
 
 public class Army implements Iterable<Warrior> {
 
-    private final LinkedList<Warrior> warriors = new LinkedList<>();
+    private LinkedList<Warrior> warriors = new LinkedList<>();
 
     public Army addUnits(Class<? extends Warrior> type, int n) {
         for (int i = 0; i < n; i++) {
@@ -25,8 +26,8 @@ public class Army implements Iterable<Warrior> {
     }
 
 
-
     private Warrior getWarrior() {
+        moveUnits();
         return warriors.getFirst();
     }
 
@@ -50,6 +51,7 @@ public class Army implements Iterable<Warrior> {
             }
         }
     }
+
 
 
     public void attack(Army anotherArmy) {
@@ -98,10 +100,6 @@ public class Army implements Iterable<Warrior> {
     }
 
 
-    private boolean bothAreHealers(Warrior warrior, Warrior enemy) {
-        return warrior instanceof Healer && enemy instanceof Healer;
-    }
-
     @Override
     public Iterator<Warrior> iterator() {
         return warriors.iterator();
@@ -119,10 +117,30 @@ public class Army implements Iterable<Warrior> {
     }
 
     public void equipWarrior(int position, Weapon weapon) {
-        if (position > warriors.size() || position < 0){
+        if (position > warriors.size() || position < 0) {
             return;
         }
         Warrior warrior = warriors.get(position);
         warrior.equipWeapon(weapon);
+    }
+
+    private boolean bothAreHealers(Warrior warrior, Warrior enemy) {
+        return warrior instanceof Healer && enemy instanceof Healer;
+    }
+
+    private Warlord getWarlord() {
+        for (Warrior w : warriors) {
+            if (w.getClass() == Warlord.class) {
+                return (Warlord) w;
+            }
+        }
+        return null;
+    }
+
+    private void moveUnits() {
+        Warlord warlord = getWarlord();
+        if (warlord != null) {
+            warriors = warlord.moveUnits(this);
+        }
     }
 }
