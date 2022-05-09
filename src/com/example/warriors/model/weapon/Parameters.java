@@ -13,7 +13,7 @@ public final class Parameters {
 
     public static final int MAGIC_WAND_HEALTH = 30;
     public static final int MAGIC_WAND_ATTACK = 3;
-    public static final int MAGIC_WAND_HEAL_POWER = 3;
+    public static final int MAGIC_WAND_HEALING = 3;
 
     public static final int KATANA_HEALTH = -20;
     public static final int KATANA_ATTACK = 6;
