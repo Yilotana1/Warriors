@@ -155,6 +155,4 @@ class ArmyFightTest {
         assertFalse(Battle.fight(army1, army2));
     }
 
-
-
 }

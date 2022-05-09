@@ -14,6 +14,12 @@ public class Army implements Iterable<Warrior> {
     private LinkedList<Warrior> warriors = new LinkedList<>();
 
     public Army addUnits(Class<? extends Warrior> type, int n) {
+        if (type == Warlord.class) {
+            if (getWarlord() != null) {
+                return this;
+            }
+            n = 1;
+        }
         for (int i = 0; i < n; i++) {
             warriors.addFirst(Warrior.ofType(type));
         }
@@ -27,7 +33,7 @@ public class Army implements Iterable<Warrior> {
 
 
     private Warrior getWarrior() {
-        moveUnits();
+        mixWarriors();
         return warriors.getFirst();
     }
 
@@ -137,10 +143,10 @@ public class Army implements Iterable<Warrior> {
         return null;
     }
 
-    private void moveUnits() {
+    public void mixWarriors() {
         Warlord warlord = getWarlord();
         if (warlord != null) {
-            warriors = warlord.moveUnits(this);
+            warriors = warlord.mixWarriors(this);
         }
     }
 }

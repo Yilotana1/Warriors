@@ -2,7 +2,6 @@ package com.example.warriors.model.warrior;
 
 import com.example.warriors.model.army.Army;
 
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,11 +31,11 @@ public class Warlord extends Defender {
 
             if (warrior instanceof Healer) {
                 healers.addLast(warrior);
-            }
-            if (warrior instanceof Lancer) {
+            } else if (warrior instanceof Lancer) {
                 warriors.addFirst(warrior);
+            } else if (!(warrior instanceof Warlord)) {
+                warriors.addLast(warrior);
             }
-            warriors.addLast(warrior);
         }
 
         if (warriors.isEmpty()) {
