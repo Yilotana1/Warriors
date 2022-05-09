@@ -9,11 +9,11 @@ import lombok.Setter;
 import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.Objects;
 
 @Data
 public class Warrior {
 
+    private int attack;
     @Setter(value = AccessLevel.PROTECTED)
     protected int health;
     private Warrior nextWarrior;
@@ -22,11 +22,27 @@ public class Warrior {
 
     public Warrior() {
         health = getMaxHealth();
+        attack = getOriginalAttack();
     }
 
     public void equipWeapon(Weapon weapon) {
-        Objects.requireNonNull(weapon);
         weapons.add(weapon);
+        getHealthFromWeapon(weapon);
+        getAttackFromWeapon(weapon);
+    }
+
+    private void getHealthFromWeapon(Weapon weapon) {
+        int generalHealth = health + weapon.getHealth();
+        if (generalHealth > getMaxHealth()) {
+            health = getMaxHealth();
+        } else {
+            health = Math.max(0, generalHealth);
+        }
+    }
+
+    private void getAttackFromWeapon(Weapon weapon) {
+        int generalAttack = attack + weapon.getAttack();
+        attack = Math.max(0, generalAttack);
     }
 
 
@@ -59,12 +75,6 @@ public class Warrior {
     }
 
     public int getHealth() {
-        int weaponsHealth = weapons.stream().mapToInt(Weapon::getHealth).sum();
-        if (health + weaponsHealth > getMaxHealth()) {
-            health = getMaxHealth();
-        } else {
-            health += weaponsHealth;
-        }
         return health;
     }
 
@@ -81,8 +91,7 @@ public class Warrior {
     }
 
     public int getAttack() {
-        int generalAttack = getOriginalAttack() + weapons.stream().mapToInt(Weapon::getAttack).sum();
-        return Math.max(generalAttack, 0);
+        return attack;
     }
 
     public boolean isAlive() {

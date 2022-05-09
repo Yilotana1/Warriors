@@ -6,6 +6,12 @@ public class Vampire extends Warrior {
 
     private static final int HUNDRED_PERCENT = 100;
 
+    private int vampirism;
+
+    public Vampire() {
+        vampirism = getOriginalVampirism();
+    }
+
     @Override
     public void punch(Warrior enemy) {
 
@@ -17,6 +23,21 @@ public class Vampire extends Warrior {
 
     }
 
+    @Override
+    public void equipWeapon(Weapon weapon) {
+        super.equipWeapon(weapon);
+        getVampirismFromWeapon(weapon);
+
+    }
+
+    private void getVampirismFromWeapon(Weapon weapon) {
+        int generalVampirism = vampirism + weapon.getVampirism();
+        if (generalVampirism > HUNDRED_PERCENT) {
+            vampirism = HUNDRED_PERCENT;
+        } else {
+            vampirism = Math.max(0, generalVampirism);
+        }
+    }
 
     @Override
     protected void setHealth(int health) {
@@ -27,14 +48,7 @@ public class Vampire extends Warrior {
     }
 
     public int getVampirism() {
-        int weaponsVampirism = getWeapons().stream().mapToInt(Weapon::getVampirism).sum();
-        int generalVampirism = getOriginalVampirism() + weaponsVampirism;
-
-        if (generalVampirism > HUNDRED_PERCENT) {
-            return HUNDRED_PERCENT;
-        }
-
-        return Math.max(generalVampirism, 0);
+        return vampirism;
     }
 
     protected int getOriginalVampirism() {
