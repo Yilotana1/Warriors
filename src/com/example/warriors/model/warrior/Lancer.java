@@ -2,8 +2,6 @@ package com.example.warriors.model.warrior;
 
 public class Lancer extends Warrior {
 
-    private static final int ATTACK = 6;
-    private static final int DECREASED_ATTACK = 50;
     private static final int HUNDRED_PERCENT = 100;
 
     @Override
@@ -19,11 +17,11 @@ public class Lancer extends Warrior {
     }
 
     protected int getDecreasedAttack() {
-        return DECREASED_ATTACK;
+        return Parameters.LANCER_DECREASED_ATTACK;
     }
 
     @Override
     public int getOriginalAttack() {
-        return ATTACK;
+        return Parameters.LANCER_ATTACK;
     }
 }

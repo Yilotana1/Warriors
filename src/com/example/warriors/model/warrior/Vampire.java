@@ -4,9 +4,6 @@ import com.example.warriors.model.weapon.Weapon;
 
 public class Vampire extends Warrior {
 
-    private static final int VAMPIRISM = 50;
-    private static final int ATTACK = 4;
-    private static final int MAX_HEALTH = 40;
     private static final int HUNDRED_PERCENT = 100;
 
     @Override
@@ -41,16 +38,16 @@ public class Vampire extends Warrior {
     }
 
     protected int getOriginalVampirism() {
-        return VAMPIRISM;
+        return Parameters.VAMPIRE_VAMPIRISM;
     }
 
     @Override
     public int getMaxHealth() {
-        return MAX_HEALTH;
+        return Parameters.VAMPIRE_HEALTH;
     }
 
     @Override
     protected int getOriginalAttack() {
-        return ATTACK;
+        return Parameters.VAMPIRE_ATTACK;
     }
 }

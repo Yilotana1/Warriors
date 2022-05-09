@@ -14,9 +14,6 @@ import java.util.Objects;
 @Data
 public class Warrior {
 
-    private static final int ATTACK = 5;
-    private static final int MAX_HEALTH = 50;
-
     @Setter(value = AccessLevel.PROTECTED)
     protected int health;
     private Warrior nextWarrior;
@@ -76,11 +73,11 @@ public class Warrior {
     }
 
     public int getMaxHealth() {
-        return MAX_HEALTH;
+        return Parameters.WARRIOR_HEALTH;
     }
 
     protected int getOriginalAttack() {
-        return Warrior.ATTACK;
+        return Parameters.WARRIOR_ATTACK;
     }
 
     public int getAttack() {
